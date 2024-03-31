@@ -1,0 +1,33 @@
+GET http://localhost:3000
+
+### GET ALL SONGS
+GET http://localhost:3000/songs
+
+### Create new song reqest
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+    "title": "Lasting lover",
+    "artists": ["LNT"],
+    "releasedDate": "2024-03-30",
+    "duration": "03:03",
+    "lyrics": "Hello hello"
+}
+### FIND SONG REQUEST
+GET http://localhost:3000/songs/1
+
+### UPDATE SONG REQUEST
+PUT http://localhost:3000/songs/1
+Content-Type: application/json
+
+{
+    "title": "Lasting lover 2",
+    "artists": ["LNT"],
+    "releasedDate": "2024-03-30",
+    "duration": "03:03",
+    "lyrics": "Hello hello hello"
+}
+
+#### DELETE SONG REQUEST
+DELETE  http://localhost:3000/songs/2
