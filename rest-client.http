@@ -8,8 +8,8 @@ POST http://localhost:3000/songs
 Content-Type: application/json
 
 {
-    "title": "Lasting lover",
-    "artists": ["LNT"],
+    "title": "LNT Love NTKP",
+    "artists": [1,2],
     "releasedDate": "2024-03-30",
     "duration": "03:03",
     "lyrics": "Hello hello"
@@ -31,3 +31,16 @@ Content-Type: application/json
 
 #### DELETE SONG REQUEST
 DELETE  http://localhost:3000/songs/2
+
+### PAGINATION SONG
+GET http://localhost:3000/songs?page=1&limit=10
+
+### CREATE PLAYLIST SONG BY USER
+POST http://localhost:3000/playlists
+Content-Type: application/json
+
+{
+    "name": "List Morning Song",
+    "songIds": [3, 4],
+    "userId": 1
+}

@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Artist } from "src/artists/entities/artist.entity";
+import { PlayList } from "src/playlists/entities/playlist.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('songs')
 export class Song {
@@ -8,8 +10,8 @@ export class Song {
     @Column()
     title: string;
 
-    @Column({ type: 'varchar', length: 255, nullable: true })
-    artists: string[];
+    // @Column({ type: 'varchar', length: 255, nullable: true })
+    // artists: string[];
 
     @Column({type: 'date'})
     releasedDate: Date;
@@ -19,4 +21,11 @@ export class Song {
 
     @Column({type: 'text'})
     lyrics: string;
+
+    @ManyToMany((type) => Artist, (artist) => artist.songs, {cascade: true})
+    @JoinTable({name: 'songs_artists'})
+    artists: Artist[];
+
+    @ManyToOne((type) => PlayList, (playlist) => playlist.songs)
+    playList: PlayList;
 }

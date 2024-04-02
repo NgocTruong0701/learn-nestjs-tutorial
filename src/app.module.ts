@@ -8,6 +8,12 @@ import { SongsController } from './songs/songs.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Song } from './songs/song.entity';
+import { ArtistsModule } from './artists/artists.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
+import { Artist } from './artists/entities/artist.entity';
+import { PlayList } from './playlists/entities/playlist.entity';
+import { PlaylistsModule } from './playlists/playlists.module';
 
 // const devConfig = { port: 3000 }
 // const proConfig = { port: 400 }
@@ -21,9 +27,12 @@ import { Song } from './songs/song.entity';
       port: 3306,
       username: 'dbreadonly',
       password: 'Truongwf0701',
-      entities: [Song],
+      entities: [Song, User, Artist, PlayList],
       synchronize: true,
-    })
+    }),
+    ArtistsModule,
+    UsersModule,
+    PlaylistsModule
   ],
   controllers: [AppController],
   providers: [
