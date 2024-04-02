@@ -44,3 +44,29 @@ Content-Type: application/json
     "songIds": [3, 4],
     "userId": 1
 }
+
+### SIGNUP 
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "firstName": "Ngọc Ngọc",
+    "lastName": "Oanh",
+    "email": "oanhngocngoc@gmail.com",
+    "password": "123456789"
+}
+
+### LOGIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "oanhngocngoc@gmail.com",
+    "password": "123456789"
+}
+
+
+## ACCESS TOKE: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hbmhuZ29jbmdvY0BnbWFpbC5jb20iLCJzdWIiOjMsImlhdCI6MTcxMjA4MjM1MCwiZXhwIjoxNzEyMTY4NzUwLCJpc3MiOiJMTlQifQ.mpjDFXRrBlK2j4GoVi0P3MUs4MBcOiFuSHij-cshctU
+####
+GET http://localhost:3000/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hbmhuZ29jbmdvY0BnbWFpbC5jb20iLCJzdWIiOjMsImlhdCI6MTcxMjA4MjM1MCwiZXhwIjoxNzEyMTY4NzUwLCJpc3MiOiJMTlQifQ.mpjDFXRrBlK2j4GoVi0P3MUs4MBcOiFuSHij-cshctU

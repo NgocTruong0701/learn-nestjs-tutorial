@@ -14,12 +14,12 @@ import { User } from './users/entities/user.entity';
 import { Artist } from './artists/entities/artist.entity';
 import { PlayList } from './playlists/entities/playlist.entity';
 import { PlaylistsModule } from './playlists/playlists.module';
+import { AuthModule } from './auth/auth.module';
 
 // const devConfig = { port: 3000 }
 // const proConfig = { port: 400 }
 @Module({
   imports: [
-    SongsModule,
     TypeOrmModule.forRoot({
       type:'mysql',
       database: 'spotify',
@@ -30,9 +30,11 @@ import { PlaylistsModule } from './playlists/playlists.module';
       entities: [Song, User, Artist, PlayList],
       synchronize: true,
     }),
+    SongsModule,
     ArtistsModule,
     UsersModule,
-    PlaylistsModule
+    PlaylistsModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [
