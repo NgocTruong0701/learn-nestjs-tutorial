@@ -5,6 +5,10 @@ import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { authConstants } from './auth.constants';
 import { JwtStrategy } from './jwt.strategy';
+import { AuthGuard } from '@nestjs/passport';
+import { AuthJwtGuard } from './auth.guard';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './roles.guard';
 
 @Module({
   imports: [
@@ -18,7 +22,19 @@ import { JwtStrategy } from './jwt.strategy';
     }),
     UsersModule,
   ],
-  providers: [AuthService, JwtStrategy],
+  providers: [
+    AuthService,
+    JwtStrategy,
+    AuthJwtGuard,
+    {
+      provide: APP_GUARD,
+      useClass: AuthJwtGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
   controllers: [AuthController],
   exports: [AuthService],
 })

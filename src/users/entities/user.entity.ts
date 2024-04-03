@@ -20,6 +20,9 @@ export class User {
     @Exclude()
     password: string;
 
+    @Column({default: 'user'})
+    role: string;
+
     @OneToMany((type) => PlayList, (playlist) => playlist.user)
     playLists: PlayList[];
 }

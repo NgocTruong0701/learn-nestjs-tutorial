@@ -50,9 +50,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "firstName": "Ngọc Ngọc",
-    "lastName": "Oanh",
-    "email": "oanhngocngoc@gmail.com",
+    "firstName": "Truong abc",
+    "lastName": "Truong",
+    "email": "truong1234@gmail.com",
     "password": "123456789"
 }
 
@@ -69,4 +69,17 @@ Content-Type: application/json
 ## ACCESS TOKE: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hbmhuZ29jbmdvY0BnbWFpbC5jb20iLCJzdWIiOjMsImlhdCI6MTcxMjA4MjM1MCwiZXhwIjoxNzEyMTY4NzUwLCJpc3MiOiJMTlQifQ.mpjDFXRrBlK2j4GoVi0P3MUs4MBcOiFuSHij-cshctU
 ####
 GET http://localhost:3000/profile
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hbmhuZ29jbmdvY0BnbWFpbC5jb20iLCJzdWIiOjMsImlhdCI6MTcxMjA4MjM1MCwiZXhwIjoxNzEyMTY4NzUwLCJpc3MiOiJMTlQifQ.mpjDFXRrBlK2j4GoVi0P3MUs4MBcOiFuSHij-cshctU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im9hbmhuZ29jbmdvY0BnbWFpbC5jb20iLCJzdWIiOjMsInJvbGVzIjoidXNlciIsImlhdCI6MTcxMjE2MTkwMywiZXhwIjoxNzEyMjQ4MzAzLCJpc3MiOiJMTlQifQ.GWElFENNsrpqp1GggGf4MpQQIZgQQmS9IkBAGgTSru4
+
+### LOGIN NEW
+POST http://localhost:3000/auth/login-new
+Content-Type: application/json
+
+{
+    "email": "oanhngocngoc@gmail.com",
+    "password": "123456789"
+}
+
+#### GET PROFLE NEW
+GET http://localhost:3000/profile2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjMsImVtYWlsIjoib2FuaG5nb2NuZ29jQGdtYWlsLmNvbSIsInJvbGVzIjoidXNlciIsImlhdCI6MTcxMjE2NTU5MCwiZXhwIjoxNzEyMjUxOTkwLCJpc3MiOiJMTlQifQ.uuW7NC2nr5d20xnB-XSyw3_kX3Hx37Qg0cw4cy6HJ6w

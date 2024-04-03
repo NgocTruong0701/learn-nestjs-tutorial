@@ -15,20 +15,40 @@ import { Artist } from './artists/entities/artist.entity';
 import { PlayList } from './playlists/entities/playlist.entity';
 import { PlaylistsModule } from './playlists/playlists.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 // const devConfig = { port: 3000 }
 // const proConfig = { port: 400 }
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type:'mysql',
-      database: 'spotify',
-      host: 'localhost',
-      port: 3306,
-      username: 'dbreadonly',
-      password: 'Truongwf0701',
-      entities: [Song, User, Artist, PlayList],
-      synchronize: true,
+    // TypeOrmModule.forRoot({
+    //   type:'mysql',
+    //   database: 'spotify',
+    //   host: 'localhost',
+    //   port: 3306,
+    //   username: 'dbreadonly',
+    //   password: 'Truongwf0701',
+    //   entities: [Song, User, Artist, PlayList],
+    //   synchronize: true,
+    // }),
+    ConfigModule.forRoot({
+      envFilePath: '.env',
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (configService: ConfigService) => (
+        {
+          type: 'mysql',
+          host: configService.get('HOST'),
+          port: +configService.get('PORT'),
+          username: configService.get('USER_NAME'),
+          password: configService.get('PASSWORD'),
+          database: configService.get('DATABASE'),
+          autoLoadEntities: true,
+          synchronize: true,
+        }),
+      inject: [ConfigService]
     }),
     SongsModule,
     ArtistsModule,
@@ -52,7 +72,7 @@ import { AuthModule } from './auth/auth.module';
   ],
 })
 export class AppModule implements NestModule {
-  constructor(private dataSource: DataSource){
+  constructor(private dataSource: DataSource) {
     console.log(`DBName: ${this.dataSource.driver.database}`)
   }
   configure(consumer: MiddlewareConsumer) {
